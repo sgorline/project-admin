@@ -67,16 +67,50 @@
     }
 }
 
-.mat-dialog-container {
-    background-color: $brandWhite;
-    border-color: $brandSecondary;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 6px !important;
-    color: $brandFontColor;
+.delete-note-dialog {
+    .mat-dialog-container {
+        background-color: $brandWhite;
+        border-color: $brandSecondary;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 6px !important;
+        color: $brandFontColor;
 
-    .mat-dialog-actions {
-        display: block;
-        text-align: center;
+        .mat-dialog-actions {
+            display: block;
+            text-align: center;
+        }
+    }
+}
+
+.add-note-dialog {
+    .mat-dialog-container {
+        background-color: $brandWhite;
+        border-bottom-left-radius: 6px !important;
+        border-bottom-right-radius: 6px !important;
+        color: $brandFontColor;
+        width: 600px;
+
+        .mat-dialog-title {
+            background-color: $brandPrimary;
+            color: $brandWhite;
+            height: 30px;
+            margin: -24px -24px 20px -24px;
+            padding: 10px 10px 5px 25px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        textarea {
+            height: 100px;
+            width: 95%;
+        }
+
+        .mat-dialog-actions {
+            display: block;
+            text-align: right;
+        }
     }
 }

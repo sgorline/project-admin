@@ -40,7 +40,9 @@ export class ProjectListComponent {
   }
 
   addNote(projectId) {
-    const dialogRef = this.dialog.open(AddNoteDialogComponent);
+    const dialogRef = this.dialog.open(AddNoteDialogComponent, {
+      panelClass: 'add-note-dialog'
+    });
     dialogRef.afterClosed().subscribe(result => {
       function findProject(project) {
         return project.id === projectId;
@@ -59,7 +61,9 @@ export class ProjectListComponent {
   }
 
   deleteNote(projectId, noteId) {
-    const dialogRef = this.dialog.open(DeleteNoteConfirmationComponent);
+    const dialogRef = this.dialog.open(DeleteNoteConfirmationComponent, {
+      panelClass: 'delete-note-dialog'
+    });
     dialogRef.afterClosed().subscribe(result => {
       // TODO - No time to add lodash and clean this up.
       function findProject(project) {
