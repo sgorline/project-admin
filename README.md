@@ -1,4 +1,6 @@
 ![Alt text](src/assets/screen1.png?raw=true)
+![Alt text](src/assets/screen2.png?raw=true)
+![Alt text](src/assets/screen3.png?raw=true)
 
 # ProjectAdmin
 
