@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, of } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteNoteConfirmationComponent } from './../delete-note-confirmation/delete-note-confirmation.component';
+import { AddNoteDialogComponent } from './../add-note-dialog/add-note-dialog.component';
 
 @Component({
   selector: 'app-project-list',
@@ -31,12 +34,26 @@ export class ProjectListComponent {
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
 
-
+  constructor(public dialog: MatDialog) {}
 
   activeChanged(event): void {
     //event.stopPropagation();
     //event.preventDefault();
     console.log(event);
+  }
+
+  addNote() {
+    const dialogRef = this.dialog.open(AddNoteDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  deleteNote() {
+    const dialogRef = this.dialog.open(DeleteNoteConfirmationComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
@@ -143,7 +160,6 @@ export class ProjectsDataSource extends DataSource<any> {
   connect(): Observable<Project[]> {
     const rows = [];
     data.forEach(element => rows.push(element, { detailRow: true, element }));
-    console.log(rows);
     return of(rows);
   }
 

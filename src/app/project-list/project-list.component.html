@@ -1,5 +1,5 @@
 <table mat-table [dataSource]="dataSource" class="projects-table">
-
+  <!-- EXPANDER COLUMN -->
   <ng-container matColumnDef="toggle">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let row">
@@ -12,28 +12,28 @@
       </span>
     </td>
   </ng-container>
-
+  <!-- REQUEST # COLUMN -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Request #</th>
     <td mat-cell *matCellDef="let element">
       <div>{{element.id}}</div>
     </td>
   </ng-container>
-
+  <!-- PROJECT TITLE COLUMN -->
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Project Title</th>
     <td mat-cell *matCellDef="let element">
       <div matTooltip="{{element.title}}">{{element.title}}</div>
     </td>
   </ng-container>
-
+  <!-- STATUS COLUMN -->
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef>Status</th>
     <td mat-cell *matCellDef="let element">
       <div matTooltip="{{element.status}}">{{element.status}}</div>
     </td>
   </ng-container>
-
+  <!-- START DATE COLUMN -->
   <ng-container matColumnDef="start_date">
     <th mat-header-cell *matHeaderCellDef>Start Date</th>
     <td mat-cell *matCellDef="let element">
@@ -42,57 +42,53 @@
       </div>
     </td>
   </ng-container>
-
+  <!-- ACTIVE COLUMN -->
   <ng-container matColumnDef="active">
     <th mat-header-cell *matHeaderCellDef>Active</th>
     <td mat-cell *matCellDef="let element">
       <mat-slide-toggle [checked]="element.active" (change)="activeChanged($event)"></mat-slide-toggle>
     </td>
   </ng-container>
-
+  <!-- ASSIGNED TO COLUMN -->
   <ng-container matColumnDef="assignee">
     <th mat-header-cell *matHeaderCellDef>Assigned To</th>
     <td mat-cell *matCellDef="let element">
       <div matTooltip="{{element.assignee}}">{{element.assignee}}</div>
     </td>
   </ng-container>
-
+  <!-- % COMPLETE COLUMN -->
   <ng-container matColumnDef="percent_complete">
     <th mat-header-cell *matHeaderCellDef>% Complete</th>
     <td mat-cell *matCellDef="let element">
       <div>{{element.percent_complete}}%</div>
     </td>
   </ng-container>
-
+  <!-- DETAIL COLUMN -->
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let detail" colspan="8">
-
       <div class="projects-details" [@detailExpand]="detail.element === expandedElement ? 'expanded' : 'collapsed'">
 
         Details/Notes
 
         <h3>Summary</h3>
         {{detail.element.details.summary}}
-
         <h3>Justification</h3>
         {{detail.element.details.justification}}
-
-        <h3>Notes:</h3>
-        <div *ngFor="let note of detail.element.notes">
-          {{note.note}}
-        </div>
-
-        <button mat-flat-button color="primary" (click)="addNote()" style="float: right;">Add Note</button>
-
+        <h3 *ngIf="detail.element.notes.length > 0">Notes:</h3>
+        <p *ngFor="let note of detail.element.notes" class="notes-container">
+          {{note.note}} <button mat-flat-button color="secondary" (click)="deleteNote()">delete Note</button>
+        </p>
+        <p>
+          <button mat-flat-button color="primary" (click)="addNote()" style="float: right;">Add Note</button>
+        </p>
       </div>
-
     </td>
   </ng-container>
-
+  <!-- HEADER ROW -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.expanded]="expandedElement === row" class="element-row"></tr>
-
+  <!-- ELEMENT ROW -->
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.expanded]="expandedElement === row"
+    class="element-row"></tr>
+  <!-- DETAIL ROW -->
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" class="detail-row"></tr>
-
 </table>

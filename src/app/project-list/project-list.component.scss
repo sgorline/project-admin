@@ -43,4 +43,9 @@
     color: $brandFontColor;
     @include border(10px);
     text-align: left;
+    white-space: normal !important;
+}
+
+.notes-container {
+    
 }
