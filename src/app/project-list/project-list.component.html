@@ -76,7 +76,7 @@
         {{detail.element.details.justification}}
         <h3 *ngIf="detail.element.notes.length > 0">Notes:</h3>
         <p *ngFor="let note of detail.element.notes" class="notes-container">
-          {{note.note}} <button mat-flat-button color="secondary" (click)="deleteNote()">delete Note</button>
+          {{note.note}} <button mat-flat-button color="secondary" (click)="deleteNote(detail.element.id, note.id)">delete Note</button>
         </p>
         <p>
           <button mat-flat-button color="primary" (click)="addNote(detail.element.id)" style="float: right;">Add Note</button>

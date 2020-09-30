@@ -42,11 +42,11 @@ export class ProjectListComponent {
     console.log(event);
   }
 
-  addNote(id) {
+  addNote(projectId) {
     const dialogRef = this.dialog.open(AddNoteDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       function findProject(project) {
-        return project.id === id;
+        return project.id === projectId;
       }
       if (result) {
         const project = data.find(findProject);
@@ -61,10 +61,22 @@ export class ProjectListComponent {
     });
   }
 
-  deleteNote() {
+  deleteNote(projectId, noteId) {
     const dialogRef = this.dialog.open(DeleteNoteConfirmationComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // TODO - No time to add lodash and clean this up.
+      function findProject(project) {
+        return project.id === projectId;
+      }
+      function findNote(note) {
+        return note.id === noteId;
+      }
+      if (result === 'confirmed') {
+        const project = data.find(findProject);
+        const index = project.notes.findIndex(findNote);
+        project.notes.splice(index, 1);
+        this.dataSource = new ProjectsDataSource();
+      }
     });
   }
 
