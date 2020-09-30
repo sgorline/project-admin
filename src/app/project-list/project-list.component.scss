@@ -1,0 +1,46 @@
+@import "../../styles/styles.scss";
+
+.projects-table {
+    background-color: $brandLightGrey;
+    min-width: 650px;
+    table-layout: fixed;
+    width: 100%;
+
+    th {
+        background-color: $brandMediumGrey;
+    }
+
+    th,
+    td {
+        text-align: center;
+    }
+
+    td {
+        > div,
+        > span {
+            color: $brandFontColor;
+            @include ellipsis();
+        }
+    }
+
+    tr.element-row:nth-of-type(odd) {
+        background-color: $brandLightGrey;
+    }
+
+    tr.detail-row {
+        height: 0;
+        visibility: hidden;
+
+        > td {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
+
+.projects-details {
+    background-color: $brandWhite;
+    color: $brandFontColor;
+    @include border(10px);
+    text-align: left;
+}
