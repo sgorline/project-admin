@@ -79,7 +79,7 @@
           {{note.note}} <button mat-flat-button color="secondary" (click)="deleteNote()">delete Note</button>
         </p>
         <p>
-          <button mat-flat-button color="primary" (click)="addNote()" style="float: right;">Add Note</button>
+          <button mat-flat-button color="primary" (click)="addNote(detail.element.id)" style="float: right;">Add Note</button>
         </p>
       </div>
     </td>

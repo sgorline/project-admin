@@ -42,10 +42,22 @@ export class ProjectListComponent {
     console.log(event);
   }
 
-  addNote() {
+  addNote(id) {
     const dialogRef = this.dialog.open(AddNoteDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      function findProject(project) {
+        return project.id === id;
+      }
+      if (result) {
+        const project = data.find(findProject);
+        const newNote = {
+          id: Math.floor(Math.random() * 1000),
+          note: result
+        };
+        project.notes.push(newNote);
+        // TODO - Just resetting datasource for now. Find a better way.
+        this.dataSource = new ProjectsDataSource();
+      }
     });
   }
 

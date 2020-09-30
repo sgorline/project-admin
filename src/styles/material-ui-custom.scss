@@ -6,15 +6,16 @@
 }
 
 .mat-primary {
-    background-color: $brandPrimary;
+    background-color: $brandPrimary !important;
 }
 
 .mat-secondary {
-    background-color: $brandSecondary;
+    background-color: $brandSecondary !important;
 }
 
 .mat-basic {
-    background-color: $brandLightGrey;
+    background-color: $brandLightGrey !important;
+    color: $brandFontColor;
 }
 
 .material-icons {
