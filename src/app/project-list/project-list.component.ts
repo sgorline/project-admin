@@ -19,7 +19,6 @@ import { AddNoteDialogComponent } from './../add-note-dialog/add-note-dialog.com
   ],
 })
 export class ProjectListComponent {
-
   displayedColumns = [
     'toggle',
     'id',
@@ -37,8 +36,6 @@ export class ProjectListComponent {
   constructor(public dialog: MatDialog) {}
 
   activeChanged(event): void {
-    //event.stopPropagation();
-    //event.preventDefault();
     console.log(event);
   }
 
@@ -186,6 +183,5 @@ export class ProjectsDataSource extends DataSource<any> {
     data.forEach(element => rows.push(element, { detailRow: true, element }));
     return of(rows);
   }
-
   disconnect() { }
 }

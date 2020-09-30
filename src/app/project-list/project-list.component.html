@@ -67,20 +67,26 @@
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let detail" colspan="8">
       <div class="projects-details" [@detailExpand]="detail.element === expandedElement ? 'expanded' : 'collapsed'">
-
-        Details/Notes
-
-        <h3>Summary</h3>
+        <div class="projects-details-header">
+          <h3>Details/Notes</h3>
+        </div>
+        <h4>Summary</h4>
         {{detail.element.details.summary}}
-        <h3>Justification</h3>
+        <h4>Justification</h4>
         {{detail.element.details.justification}}
-        <h3 *ngIf="detail.element.notes.length > 0">Notes:</h3>
-        <p *ngFor="let note of detail.element.notes" class="notes-container">
-          {{note.note}} <button mat-flat-button color="secondary" (click)="deleteNote(detail.element.id, note.id)">delete Note</button>
-        </p>
-        <p>
+        <h4 *ngIf="detail.element.notes.length > 0">Notes:</h4>
+        <div *ngFor="let note of detail.element.notes" class="notes-container">
+            <div style="flex-grow: 1;"></div>
+            <div style="flex-grow: 10;">{{note.note}}</div>
+            <div style="flex-grow: 1;">
+              <span class="material-icons note-delete" matTooltip="Delete" (click)="deleteNote(detail.element.id, note.id)">
+                clear
+              </span>
+            </div>
+        </div>
+        <div>
           <button mat-flat-button color="primary" (click)="addNote(detail.element.id)" style="float: right;">Add Note</button>
-        </p>
+        </div>
       </div>
     </td>
   </ng-container>

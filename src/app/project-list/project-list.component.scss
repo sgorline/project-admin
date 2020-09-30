@@ -15,19 +15,22 @@
         text-align: center;
     }
 
+    tr {
+        background-color: $brandLightGrey;
+    }
+
+
     td {
+        border-top: $brandMediumGrey solid 1px;
+
         > div,
         > span {
             color: $brandFontColor;
             @include ellipsis();
         }
     }
-
-    tr.element-row:nth-of-type(odd) {
-        background-color: $brandLightGrey;
-    }
-
     tr.detail-row {
+        background-color: $brandWhite;
         height: 0;
         visibility: hidden;
 
@@ -46,6 +49,24 @@
     white-space: normal !important;
 }
 
+.projects-details-header {
+    background-color: $brandLightGrey;
+    height: 35px;
+    margin: -10px -10px 10px -10px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
 .notes-container {
-    
+    display: flex;
+    align-items: stretch;
+
+    > div {
+        margin: 10px;
+    }
+
+    .note-delete {
+        color: $brandSecondary;
+        font-weight: bold;
+    }
 }
